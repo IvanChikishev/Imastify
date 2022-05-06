@@ -1,0 +1,19 @@
+{
+  "name": "imastify",
+  "version": "1.0.0",
+  "description": "Library for downloading images via http/https",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
+  },
+  "keywords": ["http", "image", "download image", "request", "jpg"],
+  "author": "Ivan Chikishev",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "prettier": "^2.6.2"
+  }
+}

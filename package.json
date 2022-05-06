@@ -5,15 +5,21 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "tsc && node dist/index.js"
+    "build": "node_modules/typescript/bin/tsc",
+    "start": "node_modules/typescript/bin/tsc && node dist/index.js"
   },
   "keywords": ["http", "image", "download image", "request", "jpg"],
   "author": "Ivan Chikishev",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/IvanChikishev/Imastify.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/IvanChikishev/Imastify/blob/main/README.md",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^17.0.31",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.4"
   }
 }

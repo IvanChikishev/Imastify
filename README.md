@@ -11,7 +11,7 @@
 * image/gif
 
 
-##Examples
+## Examples
 
 * Base
 ```javascript
@@ -57,7 +57,7 @@ console.log(image.transform('base64'));
 * with handler
 
 ```javascript
-import { ImagesPayload } from "./dist";
+import { ImagesPayload } from "imastify";
 import fs from "fs";
 
 const payload = new ImagesPayload({

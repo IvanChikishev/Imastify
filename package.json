@@ -1,6 +1,6 @@
 {
   "name": "imastify",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Library for downloading images via http/https",
   "main": "dist/index.js",
   "scripts": {

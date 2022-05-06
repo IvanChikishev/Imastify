@@ -102,7 +102,7 @@ export class ImagesPayload {
               stream.push(chunk);
 
               if (!properties.freeze) {
-                imageData.hash = this.crypto.generate(chunk.slice(0, 16));
+                imageData.hash = this.crypto.generate(chunk.slice(0, 1024));
 
                 if (options?.fracture) {
                   const success = await options.fracture(imageData);

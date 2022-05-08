@@ -15,7 +15,7 @@ type SupportedTypes = "png" | "jpg";
 export interface RequestOptions {
   headers?: { [key: string]: string | number | boolean };
   fracture?: (response: ImageData) => Promise<boolean> | boolean;
-  transformers?: {
+  transforms?: {
     [key in ImageTypes & string]?:
       | (SupportedTypes & string)
       | {

@@ -119,9 +119,9 @@ export class ImagesPayload {
 
             imageData.downloaded = true;
 
-            if (options?.transformers) {
+            if (options?.transforms) {
               for (const [transformType, transformData] of Object.entries(
-                options.transformers
+                options.transforms
               )) {
                 if (type === transformType) {
                   imageData.original = {

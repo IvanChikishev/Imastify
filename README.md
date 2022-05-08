@@ -73,6 +73,10 @@ const payload = new ImagesPayload({
 const { downloaded } = await payload.request(
   "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   {
+    transforms: {
+      avif: 'jpg', // {type: 'jpg', quality: 50}
+      gif: 'png' // {type: 'png', quality: 100}
+    },
     fracture: async ({ hash }) => {
       const state = await db.select(`SELECT * FROM t_images WHERE hash = ?`, [
         hash,

@@ -2,11 +2,12 @@ import { Crypto } from "./crypto";
 import https from "https";
 import { ImagesPayloadOptions } from "./interfaces/ImagesPayloadOptions";
 import { RequestOptions } from "./interfaces/RequestOptions";
-import { MIME_TYPES } from "./types";
+import { MIME_TYPES } from "./constants/types";
 import { ImageData } from "./interfaces/ImageData";
 import { Stream } from "stream";
-import { Image } from "./interfaces/Image";
+import { Image } from "./Image";
 import { ImageRequestError } from "./base";
+import { Converter } from "./helpers/converter";
 
 const DEFAULT_SALT = "0a31eeeb-03f2-4772-a523-fdf24973918e";
 
@@ -117,7 +118,50 @@ export class ImagesPayload {
             }
 
             imageData.downloaded = true;
-            imageData.image = new Image(stream.read(), type);
+
+            if (options?.transformers) {
+              console.log("transformer");
+
+              for (const [transformType, transformData] of Object.entries(
+                options.transformers
+              )) {
+                if (type === transformType) {
+                  imageData.original = {
+                    type,
+                    contentType: contentType,
+                    image: (imageData.image = new Image(stream.read(), type)),
+                    size: contentLength,
+                  };
+
+                  const params = { quality: 100, type };
+
+                  if (typeof transformData === "string") {
+                    params.type = transformData;
+                  } else {
+                    params.type = transformData.type;
+                    params.quality = transformData?.quality ?? 100;
+                  }
+
+                  const { source, mimeType, performance } =
+                    await Converter.transform(
+                      imageData.original.image.source,
+                      type,
+                      params.type,
+                      params.quality
+                    );
+
+                  imageData.contentType = mimeType;
+                  imageData.type = params.type;
+                  imageData.size = source.length;
+                  imageData.image = new Image(source, params.type);
+                  imageData.performance = performance;
+
+                  break;
+                }
+              }
+            } else {
+              imageData.image = new Image(stream.read(), type);
+            }
 
             return resolve(imageData);
           } catch (cause) {

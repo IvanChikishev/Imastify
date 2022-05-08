@@ -2,7 +2,7 @@
   "name": "imastify",
   "version": "1.0.3",
   "description": "Library for downloading images via http/https",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "node_modules/typescript/bin/tsc",
     "start": "node_modules/typescript/bin/tsc && node dist/index.js",

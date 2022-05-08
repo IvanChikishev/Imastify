@@ -120,8 +120,6 @@ export class ImagesPayload {
             imageData.downloaded = true;
 
             if (options?.transformers) {
-              console.log("transformer");
-
               for (const [transformType, transformData] of Object.entries(
                 options.transformers
               )) {
